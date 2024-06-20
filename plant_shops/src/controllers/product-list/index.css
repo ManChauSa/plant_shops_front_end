@@ -1,0 +1,29 @@
+.limited-height-text {
+    max-height: 4.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.car-card { 
+    width: 100%;
+    height: 550px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+h5 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.car-card-image{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+.non-border-button{
+    border-radius: 0;
+}
