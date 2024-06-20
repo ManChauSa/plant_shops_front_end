@@ -1,0 +1,17 @@
+.custom-footer {
+    background-image: url('../../../public/footer-theme.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensure the background image covers the entire footer */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-position: center; /* Center the background image */
+    color: white !important; /* Optional: change text color for better visibility */
+    padding-top: 20px; /* Adjust padding as needed */
+    padding-bottom: 20px; /* Adjust padding as needed */
+    position: relative; /* Make sure the footer positions correctly */
+    z-index: 1; /* Ensure the footer stays on top */
+}
+
+.custom-footer .container {
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background for readability */
+    padding: 20px;
+    border-radius: 10px;
+}
