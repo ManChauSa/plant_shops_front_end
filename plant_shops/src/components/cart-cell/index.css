@@ -1,0 +1,25 @@
+.cartitem {
+    border: 1px  dashed gray;
+    background-color: rgb(234, 230, 230);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.cart-select {
+    margin: 10px 0;
+}
+
+.button-box {
+    margin-top: 10px;
+}
+
+.cart-cell {
+    width: 100px;
+    border-radius: 10px;
+    margin: 5px 5px;
+    margin-top: 0px;
+    padding:  5px 0px;
+    font-size: 12px;
+
+    border: 1px dashed green;
+}

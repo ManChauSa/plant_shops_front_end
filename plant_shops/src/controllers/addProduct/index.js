@@ -22,6 +22,7 @@ export const AddProduct = () => {
         categoryId: "",
         status: "AVAILABLE",
         productType: 2,
+        isApproved: false,
         discounts: []
     });
 
@@ -33,6 +34,7 @@ export const AddProduct = () => {
             const response = await GetClient("/product/" + sku);
             if (response.status === 200) {
                 setProduct(response.data);
+                setSelectedCategory(product.categoryId);
             }
         };
 
@@ -68,18 +70,12 @@ export const AddProduct = () => {
 
         if (params.sku) {
             const response = await PutClient(`/product/${params.sku}`, product, user.token);
-            if (response.status === 200) {
-                let productId = response.data.productId;
-                dispatch({ type: 'clearProduct', product });
-                navigate(`/product/${productId}`);
-            }
+            dispatch({ type: 'clearProduct', product });
+            navigate(`/manage-product`);
         } else {
             const response = await PostClient("/product", product, user.token);
-            if (response.status === 200) {
-                let productId = response.data.productId;
-                dispatch({ type: 'clearProduct', product });
-                navigate(`/product/${productId}`);
-            }
+            dispatch({ type: 'clearProduct', product });
+            navigate(`/manage-product`);
         }
     };
 

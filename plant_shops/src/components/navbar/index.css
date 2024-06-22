@@ -18,3 +18,27 @@
     width: 100%;
     height: 300px; /* Set the height to 200px */
 }
+
+/* index.css */
+.navbar-nav .nav-link {
+    margin-right: 1rem; /* Ensure consistent spacing between nav items */
+  }
+  
+  .navbar-brand .nav-link {
+    display: flex;
+    align-items: center; /* Ensure the brand is vertically centered */
+  }
+  
+  .navbar-collapse {
+    display: flex;
+    justify-content: space-between; /* Ensure the content is properly spaced */
+  }
+  
+  .navbar-scroll {
+    flex-grow: 1; /* Allow the navbar items to take up available space */
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center; /* Ensure form is vertically centered */
+  }

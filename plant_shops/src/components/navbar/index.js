@@ -47,37 +47,44 @@ export function CustomNavBar() {
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
               navbarScroll
-            >
-              <Nav.Link onClick={() => { openPage("/product-list") }} className="bi bi-cart fw-bold">
-                SHOP
-              </Nav.Link>
-              {!user && <NavDropdown title="LOGIN" id="basic-nav-dropdown" className="bi bi-cart fw-bold">
+            >     
+              <Nav.Link onClick={() => { openPage("/product-list") }} className="fw-bold">
+                    SHOP
+                </Nav.Link>        
+              {!user && <NavDropdown title="LOGIN" id="basic-nav-dropdown" className="fw-bold">
                 <NavDropdown.Item onClick={() => { openPage("/login") }}>Log In</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={() => { openPage("/signup") }}>Sign Up</NavDropdown.Item>
               </NavDropdown>}
               {user?.role === "ROLE_BUYER" &&
-                <Nav.Link onClick={() => { openPage("/cart") }} className="bi bi-cart fw-bold">
-                  CART <Badge className="cart-badge" pill bg="danger">{carts.length}</Badge>
-                </Nav.Link>
+              <>                 
+                  <Nav.Link onClick={() => { openPage("/cart") }} className="fw-bold">
+                    CART <Badge className="cart-badge" pill bg="danger">{carts.length}</Badge>
+                  </Nav.Link>
+              </>             
               }
               {user?.role === "ROLE_SELLER" &&
-                <Nav.Link onClick={() => { openPage("/manage-product/product") }} className="bi bi-cart fw-bold">
+                <Nav.Link onClick={() => { openPage("/manage-product/product") }} className="fw-bold">
                   ADD PRODUCT
                 </Nav.Link>
               }
               {user?.role === "ROLE_SELLER" &&
-                <Nav.Link onClick={() => { openPage("/manage-product") }} className="bi bi-cart fw-bold">
+                <Nav.Link onClick={() => { openPage("/manage-product") }} className="fw-bold">
                   MANAGE PRODUCT
                 </Nav.Link>
               }
-              {(user?.role === "ROLE_SELLER" || user?.role === "ROLE_ADMIN") &&
-                <Nav.Link onClick={() => { openPage("/manage-order") }} className="bi bi-cart fw-bold">
+              {(user?.role === "ROLE_SELLER") &&
+                <Nav.Link onClick={() => { openPage("/manage-order") }} className="fw-bold">
                   MANAGE ORDER
                 </Nav.Link>
               }
+              {(user?.role === "ROLE_ADMIN") &&
+                <Nav.Link onClick={() => { openPage("/approve-seller") }} className="fw-bold">
+                  APPROVE SELLER
+                </Nav.Link>
+              }
               {user?.role === "ROLE_BUYER" &&
-                <Nav.Link onClick={() => { openPage("/your-order") }} className="bi bi-cart fw-bold">
+                <Nav.Link onClick={() => { openPage("/your-order") }} className="fw-bold">
                   YOUR ORDER
                 </Nav.Link>
               }
@@ -90,7 +97,8 @@ export function CustomNavBar() {
                     </>
                   )}                                   
                   <NavDropdown.Item onClick={logout}>Log out</NavDropdown.Item>
-                </NavDropdown>}
+                </NavDropdown>
+              }
             </Nav>
             <Form className="d-flex" onSubmit={handleSearchSubmit}>
               <Form.Control

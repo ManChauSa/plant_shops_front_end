@@ -1,0 +1,15 @@
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    size: 50px;
+}
+
+.on {
+    color: yellow;
+}
+
+.off {
+    color: #ccc;
+}

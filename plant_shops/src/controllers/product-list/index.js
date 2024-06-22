@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./index.css";
 import { ProductCell } from "../../components";
 import useAPI from "../../api";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 
 export const ProductList = () => {
@@ -12,6 +12,8 @@ export const ProductList = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(100000);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     const { GetClient } = useAPI();
 
@@ -31,14 +33,15 @@ export const ProductList = () => {
             const categoryParams = selectedCategories.length ? `&listCategories=${selectedCategories.join(",")}` : "";
             const priceParams = `&minPrice=${minPrice}&maxPrice=${maxPrice}`;
             const sortType = `&listSortTypes=1`;
-            const path = `/product?search=${searchKey}${categoryParams}${sortType}${priceParams}`;
+            const path = `/product/12/${currentPage - 1}?search=${searchKey}${categoryParams}${sortType}${priceParams}`;
             const response = await GetClient(path);
             if (response.status === 200) {
-                setProducts(response.data);
+                setProducts(response.data.products);
+                setTotalPages(response.data.totalPages); // Assume the API returns totalPages
             }
         }
         fetchData();
-    }, [searchParams, selectedCategories, minPrice, maxPrice]);
+    }, [searchParams, selectedCategories, minPrice, maxPrice, currentPage]);
 
     const handleCategoryChange = (category) => {
         setSelectedCategories((prev) =>
@@ -54,13 +57,17 @@ export const ProductList = () => {
         setMaxPrice(Number(e.target.value));
     };
 
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
     return (
         <Container>
             <Row>
                 <Col md={3}>
                     <h3>Filters</h3>
                     <Form>
-                    <Form.Group>
+                        <Form.Group>
                             <Form.Label>Price Range</Form.Label>
                             <div className="d-flex justify-content-between">
                                 <Form.Control
@@ -117,6 +124,23 @@ export const ProductList = () => {
                                 </div>
                             </Col>
                         ))}
+                    </Row>
+                    <Row className="mt-4">
+                        <Col className="d-flex justify-content-between">
+                            <Button
+                                disabled={currentPage === 1}
+                                onClick={() => handlePageChange(currentPage - 1)}
+                            >
+                                Previous
+                            </Button>
+                            <div>Page {currentPage} of {totalPages}</div>
+                            <Button
+                                disabled={currentPage === totalPages}
+                                onClick={() => handlePageChange(currentPage + 1)}
+                            >
+                                Next
+                            </Button>
+                        </Col>
                     </Row>
                 </Col>
             </Row>
