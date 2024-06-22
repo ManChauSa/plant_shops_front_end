@@ -27,10 +27,10 @@ export const OrderItem = ({ order, reloadFunction }) => {
                         Total: <span className="text-success">${order.total}</span>
                     </Card.Text>                  
                     <Card.Text>
-                        Order Date: <span className="text-success">${order.createdDate}</span>
+                        Order Date: <span className="text-success">{order.createdDate}</span>
                     </Card.Text>     
                     <Card.Text>
-                        Ship Date: <span className="text-success">${order.shipDate}</span>
+                        Ship Date: <span className="text-success">{order.shipDate}</span>
                     </Card.Text>             
                 </Col>
             </Row>
